@@ -48,13 +48,14 @@ year_limit_aggregate <- data %>%
 # Pull map of San Diego
 san_diego_map <- get_googlemap(center = "San Diego",
                                maptype = "roadmap",
-                               zoom = 11,
+                               zoom = 10,
                                size = c(640, 420),
                                color = "bw")
 
 # Plot popular routes over San Diego map
 san_diego_routes_plot <- ggmap(san_diego_map) +
-  geom_segment(aes(x = start_lon,
+  geom_segment(data = year_limit_aggregate,
+               aes(x = start_lon,
                    y = start_lat,
                    xend = end_lon,
                    yend = end_lat,
